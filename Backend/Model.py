@@ -37,31 +37,18 @@ You will decide whether a query is a 'general' query, a 'realtime' query, or is 
 """
 
 ChatHistory = [
-
 {"role": "User", "message": "how are you?"},
-
 {"role": "Chatbot", "message": "general how are you?"},
-
 {"role": "User", "message": "do you like pizza?"},
-
 {"role": "Chatbot", "message": "general do you like pizza?"},
-
 {"role": "User", "message": "open chrome and tell me about mahatma gandhi."},
-
 {"role": "Chatbot", "message": "open chrome, general tell me about mahatma gandhi."},
-
 {"role": "User", "message": "open chrome and firefox"},
-
 {"role": "Chatbot", "message": "open chrome, open firefox"},
-
 {"role": "User", "message": "what is today's date and by the way remind me that i have a dancing performance"},
-
 {"role": "Chatbot", "message": "general what is today's date, reminder 11:00pm 5th aug dancing performance"},
-
 {"role": "User", "message": "chat with me."},
-
 {"role": "Chatbot", "message": "general chat with me."}
-
 ]
 
 def FirstLayerDMM(prompt: str = "test"):
