@@ -6,21 +6,5 @@
     {
         "role": "assistant",
         "content": "What can I help you with?"
-    },
-    {
-        "role": "user",
-        "content": "Hello"
-    },
-    {
-        "role": "assistant",
-        "content": "Hello Saaransh Shrivastava. How can I assist you today?"
-    },
-    {
-        "role": "user",
-        "content": "How are you?"
-    },
-    {
-        "role": "assistant",
-        "content": "I'm doing well, thank you for asking!"
     }
 ]
