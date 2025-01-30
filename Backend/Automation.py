@@ -30,7 +30,7 @@ professional_responses = [
 
 messages = []
 
-SystemChatBot = [{"role": "system", "Content": f"Hello, I'm your {os.environ['Username']}. You're a content writer. You have to write content like letters, codes, applications, essays, notes, songs, poems etc."}]
+SystemChatBot = [{"role": "system", "content": f"Hello, I'm your {os.environ['Username']}. You're a content writer. You have to write content like letters, codes, applications, essays, notes, songs, poems etc."}]
 
 def GoogleSearch(Topic):
     search(Topic)
@@ -43,7 +43,7 @@ def Content(Topic):
         subprocess.Popen([default_text_editor, File])
 
     def ContentWriterAI(prompt):
-        messages.append({"role": "user", "Content": f"{prompt}"})
+        messages.append({"role": "user", "content": f"{prompt}"})
 
         completion = client.chat.completions.create(
             model="mixtral-8x7b-32768",
@@ -62,7 +62,7 @@ def Content(Topic):
                 Answer += chunk.choices[0].delta.content
 
         Answer = Answer.replace("</s>", "")
-        messages.append({"role": "assistant", "Content": Answer})
+        messages.append({"role": "assistant", "content": Answer})
         return Answer
     
     Topic: str = Topic.replace("Content: ", "")
@@ -74,6 +74,8 @@ def Content(Topic):
 
     OpenNotePad(rf"Data\{Topic.lower().replace(' ','')}.txt")
     return True
+
+Content("application for sick leave")
 
 def YoutubeSearch(Topic):
     Url4Search = f"https://www.youtube.com/results?search_query={Topic}"
