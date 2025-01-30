@@ -78,7 +78,7 @@ def QueryModifier(Query):
     query_words = new_query.split()
     question_words = ["how", "what", "who", "where", "when", "why", "which", "whose", "whom", "can you", "what's", "where's", "how's", "can you"]
 
-    if any(word + " " in query_words for word in query_words):
+    if any(word + " " in new_query for word in question_words):
         if query_words[-1][-1] in ['.', '?', '!']:
             new_query = new_query[:-1] + "?"
         else:
