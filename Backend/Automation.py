@@ -2,7 +2,7 @@
 is_mac = False
 try:
     from AppOpener import close, open as appopen
-except:
+except Exception:
     is_mac = True
 from webbrowser import open as webopen
 from pywhatkit import search, playonyt
@@ -16,13 +16,14 @@ import requests
 import keyboard
 import asyncio
 import os
+import re
 
 
 env_vars = dotenv_values(".env")
 GroqAPIKey = env_vars.get("GroqAPIKey")
 
-classes = ["zCubwf", "hgKElc", "LTKOO sY7ric", "ZØLcW", "gsrt vk_bk FzvWSb YwPhnf", "pclqee", "tw-Data-text tw-text-small tw-ta",
-            "IZ6rdc", "05uR6d LTKOO", "vlzY6d", "webanswers-webanswers_table_webanswers-table", "dDoNo ikb48b gsrt", "sXLaOe",
+classes = ["zCubwf", "hgKElc", "LTK00 sY7ric", "Z0LcW", "gsrt vk_bk FzvWSb YwPhnf", "pclqee", "tw-Data-text tw-text-small tw-ta",
+            "IZ6rdc", "05uR6d LTK00", "vlzY6d", "webanswers-webanswers_table__webanswers-table", "dDoNo ikb4Bb gsrt", "sXLaOe",
             "LWkfke", "VQF4g", "qv3Wpe", "kno-rdesc", "SPZz6b"]
 
 useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36'
@@ -48,7 +49,7 @@ def Content(Topic):
         if is_mac == False:
             default_text_editor = 'notepad.exe'
             subprocess.Popen([default_text_editor, File])
-        else:
+        elif is_mac == True:
             subprocess.run(['open', f'{File}'], check=True)
         #os.system("open -a TextEdit")      ['open', '-a', '/Applications/TextEdit.app']
         #default_text_editor = "open "/Applications/TextEdit.app""
@@ -91,8 +92,6 @@ def Content(Topic):
     #webbrowser.open("Data\applicationforsickleave.txt")
     return True
 
-Content("application for sick leave")
-
 def YoutubeSearch(Topic):
     Url4Search = f"https://www.youtube.com/results?search_query={Topic}"
     webbrowser.open(Url4Search)
@@ -104,24 +103,26 @@ def PlayYoutube(query):
 
 def OpenApp(app, sess=requests.session()):
     try:
-        #For mac change this
         if is_mac == False:
             appopen(app, match_closest=True, output=True, throw_error=True)
-        else:
+            return True
+        elif is_mac == True:
             os.system(f"open /Applications/{app}.app")
-        return True
+            return True
     except:
         def extract_links(html):
             if html is None:
                 return []
             soup = BeautifulSoup(html, 'html.parser')
-            links = soup.find_all('a', {'jsname': 'UWckNb'})
-            return [link['href'] for link in links]
+            links = soup.find_all('a')
+            #print(links)
+            return [link.get('href') for link in links]
         
         def search_google(query):
             url = f"https://www.google.com/search?q={query}"
-            headers = {'User-Agent': useragent}
+            headers = {"User-Agent": useragent}
             response = sess.get(url, headers=headers)
+
             if response.status_code == 200:
                 return response.text
             else:
@@ -131,11 +132,10 @@ def OpenApp(app, sess=requests.session()):
         html = search_google(app)
 
         if html:
-            link = extract_links(html)[0]
-            webopen(link)
-
+            links = extract_links(html)[1]
+            webopen(f"http://www.google.com/{links}")
         return True
-    
+
 def CloseApp(app):
     if 'chrome' in app:
         pass
@@ -144,7 +144,7 @@ def CloseApp(app):
             #Change this for mac
             if is_mac == False:
                 close(app, match_closest=True, output=True, throw_error=True)
-            else:
+            elif is_mac == True:
                 os.system(f"close /Applications/{app}.app")
             return True
         except:
