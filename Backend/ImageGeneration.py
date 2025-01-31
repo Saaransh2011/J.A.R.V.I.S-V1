@@ -6,6 +6,11 @@ from dotenv import get_key
 import os
 from time import sleep
 
+path = r"Frontend/Files/ImageGeneration.data"
+if os.name == "nt":
+    #print(os.name)
+    path = r"Frontend\Files\ImageGeneration.data"
+
 def open_images(prompt):
     folder_path = r"Data"
     prompt = prompt.replace(" ", "_")
@@ -51,9 +56,12 @@ def GenerateImages(prompt: str):
     asyncio.run(generate_images(prompt))
     open_images(prompt)
 
+#win = r"Frontend\Files\ImageGeneration.data"
+#mac = r"Frontend/Files/ImageGeneration.data"
+
 while True:
     try:
-        with open(r"Frontend\Files\ImageGeneration.data", "r") as f:
+        with open(path, "r") as f:
             #print("Reading")
             Data: str = f.read()
 
@@ -63,7 +71,7 @@ while True:
             print(f"Generating images......")
             ImageStatus = GenerateImages(prompt=Prompt)
 
-            with open(r"Frontend\Files\ImageGeneration.data", "w") as f:
+            with open(path, "w") as f:
                 print("Writing")
                 f.write("False,False")
                 break
