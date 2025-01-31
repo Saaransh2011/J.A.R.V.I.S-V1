@@ -134,7 +134,7 @@ def OpenApp(app, sess=requests.session()):
             return True
     elif is_mac == True:
         try:
-            appopen("whatsapp")
+            subprocess.run(['open', f'-a', app], check=True)
             return True
         except:
             print("Failed to")
@@ -164,8 +164,6 @@ def OpenApp(app, sess=requests.session()):
                 webopen(f"http://www.google.com/{links}")
             return True
     
-OpenApp("zoom")
-
 def CloseApp(app):
     if 'chrome' in app:
         pass
