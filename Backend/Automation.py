@@ -2,7 +2,7 @@
 is_mac = False
 try:
     from AppOpener import close, open as appopen
-except Exception:
+except:
     is_mac = True
 from webbrowser import open as webopen
 from pywhatkit import search, playonyt
@@ -102,39 +102,69 @@ def PlayYoutube(query):
     return True
 
 def OpenApp(app, sess=requests.session()):
-    try:
-        if is_mac == False:
+    if is_mac == False:
+        try:
             appopen(app, match_closest=True, output=True, throw_error=True)
             return True
-        elif is_mac == True:
-            os.system(f"open /Applications/{app}.app")
+        except:
+            def extract_links(html):
+                if html is None:
+                    return []
+                soup = BeautifulSoup(html, 'html.parser')
+                links = soup.find_all('a')
+                #print(links)
+                return [link.get('href') for link in links]
+        
+            def search_google(query):
+                url = f"https://www.google.com/search?q={query}"
+                headers = {"User-Agent": useragent}
+                response = sess.get(url, headers=headers)
+
+                if response.status_code == 200:
+                    return response.text
+                else:
+                    print("Failed to retrieve search results")
+                return None
+        
+            html = search_google(app)
+
+            if html:
+                links = extract_links(html)[1]
+                webopen(f"http://www.google.com/{links}")
             return True
-    except:
-        def extract_links(html):
-            if html is None:
-                return []
-            soup = BeautifulSoup(html, 'html.parser')
-            links = soup.find_all('a')
-            #print(links)
-            return [link.get('href') for link in links]
-        
-        def search_google(query):
-            url = f"https://www.google.com/search?q={query}"
-            headers = {"User-Agent": useragent}
-            response = sess.get(url, headers=headers)
+    elif is_mac == True:
+        try:
+            appopen("whatsapp")
+            return True
+        except:
+            print("Failed to")
+            def extract_links(html):
+                if html is None:
+                    return []
+                soup = BeautifulSoup(html, 'html.parser')
+                links = soup.find_all('a')
+                #print(links)
+                return [link.get('href') for link in links]
+            
+            def search_google(query):
+                url = f"https://www.google.com/search?q={query}"
+                headers = {"User-Agent": useragent}
+                response = sess.get(url, headers=headers)
 
-            if response.status_code == 200:
-                return response.text
-            else:
-                print("Failed to retrieve search results")
-            return None
-        
-        html = search_google(app)
+                if response.status_code == 200:
+                    return response.text
+                else:
+                    print("Failed to retrieve search results")
+                return None
+            
+            html = search_google(app)
 
-        if html:
-            links = extract_links(html)[1]
-            webopen(f"http://www.google.com/{links}")
-        return True
+            if html:
+                links = extract_links(html)[1]
+                webopen(f"http://www.google.com/{links}")
+            return True
+    
+OpenApp("zoom")
 
 def CloseApp(app):
     if 'chrome' in app:
