@@ -1,4 +1,9 @@
-from AppOpener import close, open as appopen
+#from AppOpener import close, open as appopen
+is_mac = False
+try:
+    from AppOpener import close, open as appopen
+except:
+    is_mac = True
 from webbrowser import open as webopen
 from pywhatkit import search, playonyt
 from dotenv import dotenv_values
@@ -11,6 +16,7 @@ import requests
 import keyboard
 import asyncio
 import os
+
 
 env_vars = dotenv_values(".env")
 GroqAPIKey = env_vars.get("GroqAPIKey")
@@ -39,8 +45,16 @@ def GoogleSearch(Topic):
 def Content(Topic):
 
     def OpenNotePad(File):
-        default_text_editor = 'notepad.exe'
-        subprocess.Popen([default_text_editor, File])
+        if is_mac == False:
+            default_text_editor = 'notepad.exe'
+            subprocess.Popen([default_text_editor, File])
+        else:
+            subprocess.run(['open', f'{File}'], check=True)
+        #os.system("open -a TextEdit")      ['open', '-a', '/Applications/TextEdit.app']
+        #default_text_editor = "open "/Applications/TextEdit.app""
+        #subprocess.Popen([str("/Applications/TextEdit.app"), File])
+        #default_text_editor = '/Applications/TextEdit.app'
+        #os.system(File)
 
     def ContentWriterAI(prompt):
         messages.append({"role": "user", "content": f"{prompt}"})
@@ -72,7 +86,9 @@ def Content(Topic):
         file.write(ContentByAI)
         file.close()
 
+    #webbrowser.open(rf"Data\{Topic.lower().replace(' ','')}.txt")
     OpenNotePad(rf"Data\{Topic.lower().replace(' ','')}.txt")
+    #webbrowser.open("Data\applicationforsickleave.txt")
     return True
 
 Content("application for sick leave")
@@ -88,7 +104,11 @@ def PlayYoutube(query):
 
 def OpenApp(app, sess=requests.session()):
     try:
-        appopen(app, match_closest=True, output=True, throw_error=True)
+        #For mac change this
+        if is_mac == False:
+            appopen(app, match_closest=True, output=True, throw_error=True)
+        else:
+            os.system(f"open /Applications/{app}.app")
         return True
     except:
         def extract_links(html):
@@ -121,7 +141,11 @@ def CloseApp(app):
         pass
     else:
         try:
-            close(app, match_closest=True, output=True, throw_error=True)
+            #Change this for mac
+            if is_mac == False:
+                close(app, match_closest=True, output=True, throw_error=True)
+            else:
+                os.system(f"close /Applications/{app}.app")
             return True
         except:
             return False
@@ -214,4 +238,5 @@ async def Automation(commands: list[str]):
         pass
 
     return True
+
 
