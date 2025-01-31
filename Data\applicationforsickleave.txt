@@ -1,0 +1,26 @@
+Sure, I can help you with that! Here's a sample application for sick leave that you can use as a reference:
+
+[Your Name]
+[Your Address]
+[City, State ZIP Code]
+[Email Address]
+[Today's Date]
+
+[Recipient's Name]
+[Recipient's Position]
+[Company Name]
+[Company Address]
+[City, State ZIP Code]
+
+Dear [Recipient's Name],
+
+I am writing to inform you that I am unable to come to work for the next few days due to illness. I woke up this morning with a high fever, severe body aches, and a persistent cough. I have seen a doctor and have been diagnosed with the flu.
+
+I am currently taking medication and getting plenty of rest in order to recover quickly. However, I am unable to perform my duties effectively while I am sick. Therefore, I am requesting sick leave for the next three days, starting from [Start Date] to [End Date].
+
+I apologize for any inconvenience this may cause and I will make sure to catch up on any missed work once I return to the office. If there is any additional information you need, please let me know.
+
+Thank you for your understanding.
+
+Sincerely,
+[Your Name]
