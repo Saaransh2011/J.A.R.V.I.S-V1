@@ -6,10 +6,10 @@ from dotenv import get_key
 import os
 from time import sleep
 
-path = r"Frontend/Files/ImageGeneration.data"
 if os.name == "nt":
-    #print(os.name)
     path = r"Frontend\Files\ImageGeneration.data"
+else:
+    path = r"Frontend/Files/ImageGeneration.data"
 
 def open_images(prompt):
     folder_path = r"Data"
@@ -72,8 +72,7 @@ while True:
             ImageStatus = GenerateImages(prompt=Prompt)
 
             with open(path, "w") as f:
-                print("Writing")
-                f.write("False,False")
+                f.write("")
                 break
         else:
             sleep(1)
