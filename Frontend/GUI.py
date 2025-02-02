@@ -9,8 +9,12 @@ env_values = dotenv_values(".env")
 AssistantName = env_values["Assistantname"]
 current_dir = os.getcwd()
 old_chat_message = ""
-TempDirPath = rf"{current_dir}\Frontend\Files"
-GraphicsDirPath = rf"{current_dir}\Frontend\Graphics"
+if os.name == "nt":
+    TempDirPath = rf"{current_dir}\Frontend\Files"
+    GraphicsDirPath = rf"{current_dir}\Frontend\Graphics"
+else:
+    TempDirPath = rf"{current_dir}/Frontend/Files"
+    GraphicsDirPath = rf"{current_dir}/Frontend/Graphics"
 
 def AnswerModifier(Answer):
     lines = Answer.split("\n")
@@ -37,21 +41,37 @@ def QueryModifier(Query):
     return new_query.capitalize()
 
 def SetMicrophoneStatus(Command):
-    with open(rf'{TempDirPath}\Mic.data', 'w', encoding='utf-8') as file:
-        file.write(Command)
+    if os.name == "nt":
+        with open(rf'{TempDirPath}\Mic.data', 'w', encoding='utf-8') as file:
+            file.write(Command)
+    else:
+        with open(rf'{TempDirPath}/Mic.data', 'w', encoding='utf-8') as file:
+            file.write(Command)
 
 def GetMicrophoneStatus():
-    with open(rf'{TempDirPath}\Mic.data', 'r', encoding='utf-8') as file:
-        Status =  file.read()
+    if os.name == "nt":
+        with open(rf'{TempDirPath}\Mic.data', 'r', encoding='utf-8') as file:
+            Status =  file.read()
+    else:
+        with open(rf'{TempDirPath}/Mic.data', 'r', encoding='utf-8') as file:
+            Status =  file.read()
     return Status
 
 def SetAssistantStatus(Status):
-    with open(rf'{TempDirPath}\Status.data', 'w', encoding='utf-8') as file:
-        file.write(Status)
+    if os.name == "nt":
+        with open(rf'{TempDirPath}\Status.data', 'w', encoding='utf-8') as file:
+            file.write(Status)
+    else:
+        with open(rf'{TempDirPath}/Status.data', 'w', encoding='utf-8') as file:
+            file.write(Status)
 
 def GetAssistantStatus():
-    with open(rf'{TempDirPath}\Status.data', 'r', encoding='utf-8') as file:
-        Status =  file.read()
+    if os.name == "nt":
+        with open(rf'{TempDirPath}\Status.data', 'r', encoding='utf-8') as file:
+            Status =  file.read()
+    else:
+        with open(rf'{TempDirPath}/Status.data', 'r', encoding='utf-8') as file:
+            Status =  file.read()
     return Status
 
 def MicButtonInitialed():
@@ -61,16 +81,26 @@ def MicButtonClosed():
     SetMicrophoneStatus("True")
 
 def GraphicsDirectoryPath(Filename):
-    Path = rf'{GraphicsDirPath}\{Filename}'
+    if os.name == "nt":
+            Path = rf'{GraphicsDirPath}\{Filename}'
+    else:
+        Path = rf'{GraphicsDirPath}/{Filename}'
     return Path
 
 def TempDirectoryPath(Filename):
-    Path = rf'{TempDirPath}\{Filename}'
+    if os.name == "nt":
+        Path = rf'{TempDirPath}\{Filename}'
+    else:
+        Path = rf'{TempDirPath}/{Filename}'
     return Path
 
 def ShowTextToScreen(Text):
-    with open(rf'{TempDirPath}\Responses.data', "w", encoding='utf-8') as file:
-        file.write(Text)
+    if os.name == "nt":
+        with open(rf'{TempDirPath}\Responses.data', "r", encoding='utf-8') as file:
+            Text = file.read()
+    else:
+        with open(rf'{TempDirPath}/Responses.data', "w", encoding='utf-8') as file:
+            file.write(Text)
 
 class ChatSection(QWidget):
     def __init__(self):
