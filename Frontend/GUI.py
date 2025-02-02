@@ -102,7 +102,7 @@ class ChatSection(QWidget):
         movie.start()
         layout.addWidget(self.gif_label)
         self.label = QLabel("")
-        self.label.setStyleSheet("color: white; font-size: 16px; margin-right: 195px; border: none; margin-top: -30px")
+        self.label.setStyleSheet("color: white; font-size: 16px; margin-right: 195px; border: none; margin-top: -30px;")
         self.label.setAlignment(Qt.AlignRight)
         layout.addWidget(self.label)
         layout.setSpacing(-10)
@@ -133,12 +133,14 @@ class ChatSection(QWidget):
                 subcontrol-position: bottom;
                 subcontrol-origin: margin;
                 height: 10px;
+                }
                            
                 QScrollBar::sub-line:vertical {
                 background: black;
                 subcontrol-position: top;
                 subcontrol-origin: margin;
                 height: 10px;
+                }
                            
                 QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
                 border: none;
@@ -155,7 +157,7 @@ class ChatSection(QWidget):
 
         global old_chat_message
 
-        with open(TempDirectoryPath('Responses.data'), 'r', encoding='utf-8') as file:
+        with open(TempDirectoryPath('Responses.data'), "r", encoding='utf-8') as file:
             messages = file.read()
 
             if None==messages:
@@ -165,9 +167,8 @@ class ChatSection(QWidget):
             elif str(old_chat_message)==str(messages):
                 pass
             else:
-                self.addMessage(message=messages,color='White')
+                self.addMessage(message=messages,color="White")
                 old_chat_message = messages
-
     def SpeechRecogText(self):
         with open(TempDirectoryPath('Status.data'), 'r', encoding='utf-8') as file:
             messages = file.read()
@@ -196,7 +197,7 @@ class ChatSection(QWidget):
         formatm = QTextBlockFormat()
         formatm.setTopMargin(10)
         formatm.setLeftMargin(10)
-        formatm.setForeground(QColor(color))
+        format.setForeground(QColor(color))
         cursor.setCharFormat(format)
         cursor.setBlockFormat(formatm)
         cursor.insertText(message + "\n")
