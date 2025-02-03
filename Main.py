@@ -105,6 +105,11 @@ def MainExecution():
     )
 
     for queries in Decision:
+        if "self destruct" in queries:
+            TextToSpeech("Okay sir, self destructing in 5, 4, 3, 2, 1.")
+            os._exit(0.5)
+
+    for queries in Decision:
         if "generate" in queries:
             ImageGenerationQuery = str(queries)
             ImageExecution = True
