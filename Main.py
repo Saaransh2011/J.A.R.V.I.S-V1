@@ -106,8 +106,9 @@ def MainExecution():
 
     for queries in Decision:
         if "self destruct" in queries:
-            TextToSpeech("Okay sir, self destructing in 5, 4, 3, 2, 1.")
-            os._exit(0.5)
+            SetAssistantStatus("Self Destruct Initiated...")
+            TextToSpeech("Self Destruct Initiated;  ,  Goodbye sir ,  ;self destructing in 5; 4; 3; 2; 1.")
+            os._exit(1)
 
     for queries in Decision:
         if "generate" in queries:
