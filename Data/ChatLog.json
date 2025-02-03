@@ -1,0 +1,170 @@
+[
+    {
+        "role": "user",
+        "content": "How are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing well, thanks for asking! I'm ready to assist you with any questions or topics you'd like to discuss."
+    },
+    {
+        "role": "user",
+        "content": "What is the stock price of apple?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest available information, the stock price of Apple (AAPL) is $236.00, with a day's open of $247.19 and an intraday high of $247.19, and an intraday low of $233.44."
+    },
+    {
+        "role": "user",
+        "content": "Jarvis tell me the stock price of google."
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest available information, the stock price of Alphabet Inc. (GOOGL) is $200.87."
+    },
+    {
+        "role": "user",
+        "content": "How are you jarvis?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm functioning within optimal parameters, thank you for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Jarvis tell me about google."
+    },
+    {
+        "role": "assistant",
+        "content": "Based on the latest available information, Google is a multinational technology company that specializes in Internet-related services and products. One of the recent developments related to Google is the introduction of its Jarvis AI, which is an experimental \"computer-using agent\" designed to handle tasks such as conducting research, making online purchases, and booking flights or reservations. It's a web-based AI agent that can automate everyday web-based tasks for users. Google inadvertently posted the Jarvis AI prototype on its Chrome extension web store, and it has been generating significant buzz in the tech community."
+    },
+    {
+        "role": "user",
+        "content": "What's the time?"
+    },
+    {
+        "role": "assistant",
+        "content": "The current time is 17:46:36."
+    },
+    {
+        "role": "user",
+        "content": "How are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm operating within optimal parameters, thank you for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Where is india?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest available information, India is a country located in South Asia. It is the seventh-largest country by area and lies entirely in the northern hemisphere, extending between latitudes 8\u00b0 4' and 37\u00b0 6' north, and longitudes 68\u00b0 7' and 97\u00b0 25' east."
+    },
+    {
+        "role": "user",
+        "content": "Tell me about apple."
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest available information, Apple Inc. is an American multinational corporation and technology company headquartered in Cupertino, California, in Silicon Valley. It is best known for its consumer electronics, software, and services. Founded in 1976 as Apple Computer Company by Steve Jobs, Steve Wozniak, and Ronald Wayne, Apple is famous for creating the iPhone, iPad, and Macintosh computers."
+    },
+    {
+        "role": "user",
+        "content": "Yamraj."
+    },
+    {
+        "role": "assistant",
+        "content": "Yamraj is the god of death in Hindu mythology. He is also known as Yama, and is responsible for presiding over the underworld and governing the spirits of the dead."
+    },
+    {
+        "role": "user",
+        "content": "What is the time?"
+    },
+    {
+        "role": "assistant",
+        "content": "The current time is 18:08:35."
+    },
+    {
+        "role": "user",
+        "content": "24 1/2."
+    },
+    {
+        "role": "assistant",
+        "content": "24 1/2 is equal to 24.5."
+    },
+    {
+        "role": "user",
+        "content": "Jarvis apple ka stock ka price kya hai."
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest available information, the stock price of Apple (AAPL) is $236.00."
+    },
+    {
+        "role": "user",
+        "content": "Jarvis samay kya ho raha hai."
+    },
+    {
+        "role": "assistant",
+        "content": "The current time is 18:09:25."
+    },
+    {
+        "role": "user",
+        "content": "Jarvis tum kaise ho."
+    },
+    {
+        "role": "assistant",
+        "content": "I'm functioning within optimal parameters, thank you for asking!"
+    },
+    {
+        "role": "user",
+        "content": "7:30 baje aati hai."
+    },
+    {
+        "role": "assistant",
+        "content": "It seems like you're mentioning a time, but according to our current context, the correct time is 18:10:29."
+    },
+    {
+        "role": "user",
+        "content": "Bhaiya se mil jaenge to pure ghar ki."
+    },
+    {
+        "role": "assistant",
+        "content": "It seems like you're expressing a sentiment or thought, but I'm not quite sure what you mean by that. Could you please clarify or rephrase it?"
+    },
+    {
+        "role": "user",
+        "content": "What's the time?"
+    },
+    {
+        "role": "assistant",
+        "content": "The current time is 18:30:06."
+    },
+    {
+        "role": "user",
+        "content": "Thank you jarvis."
+    },
+    {
+        "role": "assistant",
+        "content": "You're welcome! It was my pleasure assisting you. Have a great day!"
+    },
+    {
+        "role": "user",
+        "content": "Okay, bye."
+    },
+    {
+        "role": "assistant",
+        "content": "Goodbye!"
+    },
+    {
+        "role": "user",
+        "content": "Okay, bye."
+    },
+    {
+        "role": "assistant",
+        "content": "Goodbye!"
+    }
+]

@@ -59,7 +59,8 @@ def GetMicrophoneStatus():
 
 def SetAssistantStatus(Status):
     if os.name == "nt":
-        with open(rf'{TempDirPath}\Status.data', 'w', encoding='utf-8') as file:
+        with open(rf'{TempDirPath}\Status.data', "w", encoding='utf-8') as file:
+            #file.truncate(0)
             file.write(Status)
     else:
         with open(rf'{TempDirPath}/Status.data', 'w', encoding='utf-8') as file:
@@ -67,7 +68,7 @@ def SetAssistantStatus(Status):
 
 def GetAssistantStatus():
     if os.name == "nt":
-        with open(rf'{TempDirPath}\Status.data', 'r', encoding='utf-8') as file:
+        with open(rf'{TempDirPath}\Status.data', "r", encoding='utf-8') as file:
             Status =  file.read()
     else:
         with open(rf'{TempDirPath}/Status.data', 'r', encoding='utf-8') as file:
@@ -200,9 +201,12 @@ class ChatSection(QWidget):
                 self.addMessage(message=messages,color="White")
                 old_chat_message = messages
     def SpeechRecogText(self):
-        with open(TempDirectoryPath('Status.data'), 'r', encoding='utf-8') as file:
-            messages = file.read()
-            self.label.setText(messages)
+        try:   
+            with open(TempDirectoryPath('Status.data'), "r", encoding='utf-8') as file:
+                messages = file.read()
+                self.label.setText(messages)
+        except PermissionError:
+            print("Permission error")
     
     def load_icon(self, path, width=60, height=60):
         pixmap = QPixmap(path)
@@ -273,9 +277,12 @@ class InitialScreen(QWidget):
         self.timer.start(5)
 
     def SpeechRecogText(self):
-        with open(TempDirectoryPath('Status.data'), 'r', encoding='utf-8') as file:
-            messages = file.read()
-            self.label.setText(messages)
+        try:
+            with open(TempDirectoryPath('Status.data'), "r", encoding='utf-8') as file:
+                messages = file.read()
+                self.label.setText(messages)
+        except PermissionError:
+            print("Permission error")
 
     def load_icon(self, path, width=60, height=60):
         pixmap = QPixmap(path)

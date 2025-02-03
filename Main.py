@@ -12,7 +12,7 @@ from Backend.Model import FirstLayerDMM
 from Backend.RealtimeSearchEngine import RealtimeSearchEngine
 from Backend.Automation import Automation
 from Backend.SpeechToText import SpeechRecognition
-from Backend.Chatbot import Chatbot
+from Backend.Chatbot import ChatBot
 from Backend.TextToSpeech import TextToSpeech
 from dotenv import dotenv_values
 from asyncio import run
@@ -42,7 +42,7 @@ def ShowDefaultChatIfNoChats():
 def ReadChatLogJson():
     with open(r'Data\ChatLog.json', "r", encoding='utf-8') as file:
         chatlog_data = json.load(file)
-        return chatlog_data
+    return chatlog_data
     
 def ChatLogIntegration():
     json_data = ReadChatLogJson()
@@ -52,10 +52,11 @@ def ChatLogIntegration():
             formatted_chatlog += f"User: {entry['content']}\n"
         elif entry["role"] == "assistant":
             formatted_chatlog += f"Assistant: {entry['content']}\n"
-    formatted_chatlog = formatted_chatlog.replace("User", Username + " ")
-    formatted_chatlog = formatted_chatlog.replace("Assistant", Assistantname + " ")
+    formatted_chatlog = formatted_chatlog.replace("User",Username + " ")
+    formatted_chatlog = formatted_chatlog.replace("Assistant",Assistantname + " ")
 
-    with open(TempDirectoryPath('Database.data'), "r", encoding='utf-8') as file:
+    #Changes done: Database.data to Responses.data
+    with open(TempDirectoryPath('Database.data'), "w", encoding='utf-8') as file:
         file.write(AnswerModifier(formatted_chatlog))
 
 def ShowChatsOnGUI():
@@ -65,7 +66,7 @@ def ShowChatsOnGUI():
         lines = Data.split("\n")
         result = '\n'.join(lines)
         File.close()
-        File = open(TempDirectoryPath('Response.data'), 'w', encoding='utf-8')
+        File = open(TempDirectoryPath('Responses.data'), "w", encoding='utf-8')
         File.write(result)
         File.close()
     
@@ -97,6 +98,8 @@ def MainExecution():
     G = any([i for i in Decision if i.startswith("general")])
     R = any([i for i in Decision if i.startswith("realtime")])
 
+    print(G, R)
+
     Mearged_query = " and ".join(
         [" ".join(i.split()[1:]) for i in Decision if i.startswith("general") or i.startswith("realtime")]
     )
@@ -115,7 +118,7 @@ def MainExecution():
     if ImageExecution == True:
 
         with open(r"Frontend\Files\ImageGeneration.data", "w") as file:
-            file.write(f"{ImageGenerationQuery}, True")
+            file.write(f"{ImageGenerationQuery},True")
 
         try:
             p1 = subprocess.Popen(['python', r'Backend\ImageGeneration.py'], 
@@ -129,6 +132,7 @@ def MainExecution():
 
         SetAssistantStatus("Searching...")
         Answer = RealtimeSearchEngine(QueryModifier(Mearged_query))
+        print(Answer)
         ShowTextToScreen(f"{Assistantname} : {Answer}")
         SetAssistantStatus("Answering...")
         TextToSpeech(Answer)
@@ -138,8 +142,8 @@ def MainExecution():
 
             if "general" in Queries:
                 SetAssistantStatus("Thinking...")
-                QueryFinal = Queries.repalce("general ", "")
-                Answer = Chatbot(QueryModifier(QueryFinal))
+                QueryFinal = Queries.replace("general ", "")
+                Answer = ChatBot(QueryModifier(QueryFinal))
                 ShowTextToScreen(f"{Assistantname} : {Answer}")
                 SetAssistantStatus("Answering...")
                 TextToSpeech(Answer)
@@ -156,7 +160,7 @@ def MainExecution():
             
             elif "exit" in Queries:
                 QueryFinal = "Okay, Bye!"
-                Answer = Chatbot(QueryModifier(QueryFinal))
+                Answer = ChatBot(QueryModifier(QueryFinal))
                 ShowTextToScreen(f"{Assistantname} : {Answer}")
                 SetAssistantStatus("Exiting...")
                 TextToSpeech(Answer)
