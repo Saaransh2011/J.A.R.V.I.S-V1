@@ -107,7 +107,7 @@ def MainExecution():
     for queries in Decision:
         if "self destruct" in queries:
             SetAssistantStatus("Self Destruct Initiated...")
-            TextToSpeech("Self Destruct Initiated;  ,  ;self destructing in 5; 4; 3; 2; 1.")
+            TextToSpeech("Self Destruct Initiated ;self destructing in 5; 4; 3; 2; 1.")
             os._exit(1)
 
     for queries in Decision:
