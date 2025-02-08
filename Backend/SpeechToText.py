@@ -50,8 +50,12 @@ HtmlCode = '''<!DOCTYPE html>
 
 HtmlCode = str(HtmlCode).replace("recognition.lang = '';", f"recognition.lang = '{InputLanguage}';")
 
-with open(r"Data\Voice.html", "w") as f:
-    f.write(HtmlCode)
+if os.name == 'nt':
+    with open(r"Data\Voice.html", "w") as f:
+        f.write(HtmlCode)
+else:
+    with open(r"Data/Voice.html", "w") as f:
+        f.write(HtmlCode)
 
 current_dir = os.getcwd()
 
