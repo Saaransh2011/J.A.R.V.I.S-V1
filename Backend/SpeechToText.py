@@ -59,7 +59,7 @@ else:
 
 current_dir = os.getcwd()
 
-Link = f"{current_dir}/Data/Voice.html"
+Link = f"{current_dir}\Data\Voice.html"
 
 chrome_options = Options()
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.142.86 Safari/537.36"
@@ -71,10 +71,10 @@ chrome_options.add_argument(f"--headless=new")
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-TempDirPath = rf"{current_dir}/Frontend/Files"
+TempDirPath = rf"{current_dir}\Frontend\Files"
 
 def SetAssistantStatus(Status):
-    with open(rf'{TempDirPath}/Status.data', 'w', encoding='utf-8') as file:
+    with open(rf'{TempDirPath}\Status.data', 'w', encoding='utf-8') as file:
         file.write(Status)
 
 def QueryModifier(Query):
